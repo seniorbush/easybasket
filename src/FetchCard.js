@@ -1,4 +1,4 @@
-import { Card, TextField, Autocomplete, Button, FormControl, FormLabel, Input, Typography } from '@mui/material'
+import { Card, TextField, Autocomplete, Button, FormControl, FormLabel, Input, Typography, Box } from '@mui/material'
 import React from 'react'
 
 function FetchCard() {
@@ -13,22 +13,27 @@ function FetchCard() {
         gap: 2
         
         }}>
-            <FormControl>
-                <FormLabel>Search recipes</FormLabel>
+            <FormControl sx={{width: "80%", pb:4}}>
+                <FormLabel>Search for recipes</FormLabel>
                 <Input
                     name="searchInput"
                     type="text"
-                    placeholder="e.g spaghetti"
+                    placeholder="Enter ingredient(s), get recipe.."
                 />
             </FormControl>
-            <Input size="md" placeholder="Medium" variant="outlined"/>
+
+            <Typography>
+                Advanced Options
+            </Typography>
+
+            <Box
+            sx={{display:"flex", gap:1}}>
             <Autocomplete
-            
             disablePortal
             id="combo-box-demo"
             name="intolerances"
             options={intolerances}
-            sx={{ width: 300 }}
+            sx={{ minWidth:200 }}
             renderInput={(params) => <TextField {...params} label="Intolerance" />}
             />
 
@@ -37,11 +42,13 @@ function FetchCard() {
             id="combo-box-demo"
             name="cuisine"
             options={cuisine}
-            sx={{ width: 300 }}
+            sx={{ width: 200, pb:4 }}
             renderInput={(params) => <TextField {...params} label="Cuisine" />}
             />
+            </Box>
+            
 
-            <Button variant='contained' size="small">Search</Button>
+            <Button variant='contained' size="large">Search</Button>
 
        
     </Card>
