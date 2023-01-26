@@ -9,7 +9,7 @@ function RecipeCard() {
         <CardMedia
         component="img"
         alt="green iguana"
-        height="140"
+        height="40%"
         image={require('./Assets/wedges.jpg')}
       />
       <CardContent>

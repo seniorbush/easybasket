@@ -1,56 +1,109 @@
-import { Card, TextField, Autocomplete, Button, FormControl, FormLabel, Input, Typography, Box } from '@mui/material'
-import React from 'react'
+import { Grid, Card, TextField, Autocomplete, Button, FormControl, FormLabel, Input, Typography, Box, List, ListItemText, ListItemButton } from '@mui/material'
+import { useRef, useState, useEffect } from 'react';
+import axios from 'axios'
 
 function FetchCard() {
+    const [recipes, setRecipes] = useState([])
+
+    const searchRef = useRef(); 
+    const intoleranceRef = useRef();   
+    const cuisineRef = useRef();   
+
+    const useSearch = (e) => {
+        e.preventDefault()
+
+        useEffect(() => {
+            axios
+            .get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${searchRef.current.value}cuisine=${intoleranceRef.current.value}&excludeIngredients=${cuisineRef.current.value}&instructionsRequired&number=10`)
+            .then(res => {
+                setRecipes(res.data.results)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }, [])
+
+
+    }
+
   return (
     <Card
-    sx={{
-        height: "40vh", 
+        sx={{
+        height: "40vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: 'center',
-        gap: 2
-        
+        gap: 2,  
         }}>
-            <FormControl sx={{width: "80%", pb:4}}>
-                <FormLabel>Search for recipes</FormLabel>
-                <Input
-                    name="searchInput"
-                    type="text"
-                    placeholder="Enter ingredient(s), get recipe.."
-                />
-            </FormControl>
+            <Grid container
+            spacing={2}
+            alignItems="center"
+            justifyContent="center"
+            >
 
-            <Typography>
-                Advanced Options
-            </Typography>
+                <Grid item xs={6}>
 
-            <Box
-            sx={{display:"flex", gap:1}}>
-            <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            name="intolerances"
-            options={intolerances}
-            sx={{ minWidth:200 }}
-            renderInput={(params) => <TextField {...params} label="Intolerance" />}
-            />
+                    <FormControl sx={{width: "80%", pb:4}}>
+                        <FormLabel>Show me recipes with:</FormLabel>
+                            <Input
+                            ref={searchRef}
+                            name="searchInput"
+                            type="text"
+                            placeholder="Enter ingredient(s), get recipe.."
+                            />
+                    </FormControl>
 
-            <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            name="cuisine"
-            options={cuisine}
-            sx={{ width: 200, pb:4 }}
-            renderInput={(params) => <TextField {...params} label="Cuisine" />}
-            />
-            </Box>
-            
+                    <Typography sx={{pb:2}}>
+                        Advanced Options
+                    </Typography>
 
-            <Button variant='contained' size="large">Search</Button>
+                    <Box
+                        sx={{display:"flex", gap:1, justifyContent:"center"}}>
+                        <Autocomplete
+                        ref={intoleranceRef}
+                        disablePortal
+                        id="combo-box-demo"
+                        name="intolerances"
+                        options={intolerances}
+                        sx={{ minWidth:150 }}
+                        renderInput={(params) => <TextField {...params} label="Intolerance" />}
+                        />
 
-       
+                        <Autocomplete
+                        ref={cuisineRef}
+                        disablePortal
+                        id="combo-box-demo"
+                        name="cuisine"
+                        options={cuisine}
+                        sx={{ width: 150, pb:4 }}
+                        renderInput={(params) => <TextField {...params} label="Cuisine" />}
+                        />
+                    </Box>
+                    
+
+                    <Button 
+                    variant='contained' 
+                    size="large"
+                    onClick={useSearch}
+                    >Search
+                    </Button>
+
+                </Grid>
+
+                <Grid item xs={6}>
+                    <h3>Results</h3>
+                    <List>
+                        {recipes.map((recipe) = (
+                            <ListItemButton divider>
+                                <ListItemText key={recipe.id} sx={{textAlign:"center"}} primary={recipe.title} />
+                            </ListItemButton>
+                        ))}  
+                    </List>
+                </Grid>
+
+            </Grid>
+
     </Card>
   )
 }
