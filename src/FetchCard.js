@@ -1,35 +1,21 @@
 import { Grid, Card, TextField, Autocomplete, Button, FormControl, FormLabel, Input, Typography, Box, List, ListItemText, ListItemButton } from '@mui/material'
-import { useRef, useState, useEffect } from 'react';
-import axios from 'axios'
+import { useRef, useState } from 'react';
+import { useFetch } from './useFetch';
+
 
 function FetchCard() {
-    const [recipes, setRecipes] = useState([])
-
+    
     const searchRef = useRef(); 
     const intoleranceRef = useRef();   
-    const cuisineRef = useRef();   
-
-    const useSearch = (e) => {
-        e.preventDefault()
-
-        useEffect(() => {
-            axios
-            .get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${searchRef.current.value}cuisine=${intoleranceRef.current.value}&excludeIngredients=${cuisineRef.current.value}&instructionsRequired&number=10`)
-            .then(res => {
-                setRecipes(res.data.results)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        }, [])
-
-
-    }
+    const cuisineRef = useRef();  
+    
+    const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=8`)
+    const { data } = useFetch(url)
 
   return (
     <Card
         sx={{
-        height: "40vh",
+        minHeight: "40vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -85,7 +71,8 @@ function FetchCard() {
                     <Button 
                     variant='contained' 
                     size="large"
-                    onClick={useSearch}
+                    // onClick={() => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${searchRef.current.value}&number=8`)}
+                    onClick={()=>console.log(searchRef.current.value)}
                     >Search
                     </Button>
 
@@ -94,9 +81,9 @@ function FetchCard() {
                 <Grid item xs={6}>
                     <h3>Results</h3>
                     <List>
-                        {recipes.map((recipe) = (
-                            <ListItemButton divider>
-                                <ListItemText key={recipe.id} sx={{textAlign:"center"}} primary={recipe.title} />
+                        {data && data.map(recipe => (
+                            <ListItemButton divider key={recipe.id+recipe.title}  >
+                                <ListItemText key={recipe.id} sx={{fontSize:8}} primary={recipe.title} />
                             </ListItemButton>
                         ))}  
                     </List>

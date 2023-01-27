@@ -10,6 +10,7 @@ function DataFetch() {
         .get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${"spaghetti"}cuisine="italian"&excludeIngredients="peanuts"&instructionsRequired&number=3`)
         .then(res => {
             setRecipes(res.data.results)
+            console.log(res.data)
         })
         .catch(err => {
             console.log(err)

@@ -10,6 +10,7 @@ function App() {
     <div className="App">
       <Navbar/>
 
+
       <Container>
         <Grid container 
         spacing={2}
@@ -17,12 +18,12 @@ function App() {
         justifyContent="center"
         style={{ minHeight: '100vh' }}>
           
-          <Grid item xs={8}>
+          <Grid item xs={12}>
              <FetchCard/>
           </Grid>
 
 
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <RecipeCard />
           </Grid>
           
