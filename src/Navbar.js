@@ -1,34 +1,27 @@
-import React from 'react'
-import { Box, AppBar, Toolbar, Typography, Container } from '@mui/material';
-import SearchIcon  from '@mui/icons-material/Search';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import { Container } from '@mui/material';
 
-function Navbar() {
+export default function CustomizedInputBase() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Container>
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <SearchIcon />
-            </IconButton>
-            
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              easyBasket
-            </Typography>
-
-          </Toolbar>
-        </Container>
-      </AppBar>
-      
-    </Box>
-  )
+    <Container sx={{display:"flex", justifyContent:"center", alignItems: "center", pt:1}}>
+      <Paper
+        component="form"
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+      >
+        <IconButton sx={{ p: '10px' }} aria-label="menu">
+        </IconButton>
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="Search Google Maps"
+          inputProps={{ 'aria-label': 'search google maps' }}
+        />
+        <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+          <SearchIcon />
+        </IconButton>
+      </Paper>
+    </Container>
+  );
 }
-
-export default Navbar

@@ -1,5 +1,5 @@
 import { Grid, Card, TextField, Autocomplete, Button, FormControl, FormLabel, Input, Typography, Box, List, ListItemText, ListItemButton } from '@mui/material'
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useFetch } from './useFetch';
 
 
@@ -11,6 +11,8 @@ function FetchCard() {
     
     const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=8`)
     const { data } = useFetch(url)
+
+    const [search, setSearch] = useState("");
 
   return (
     <Card
@@ -35,8 +37,9 @@ function FetchCard() {
                             <Input
                             ref={searchRef}
                             name="searchInput"
-                            type="text"
-                            placeholder="Enter ingredient(s), get recipe.."
+                            type="text"          
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
                             />
                     </FormControl>
 
@@ -71,8 +74,7 @@ function FetchCard() {
                     <Button 
                     variant='contained' 
                     size="large"
-                    // onClick={() => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${searchRef.current.value}&number=8`)}
-                    onClick={()=>console.log(searchRef.current.value)}
+                    onClick={(e) => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${search}&number=8`)}
                     >Search
                     </Button>
 
