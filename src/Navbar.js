@@ -2,7 +2,7 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { Container } from '@mui/material';
+import { Container, Divider } from '@mui/material';
 
 export default function CustomizedInputBase() {
   return (
@@ -15,9 +15,12 @@ export default function CustomizedInputBase() {
         </IconButton>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="Search Google Maps"
-          inputProps={{ 'aria-label': 'search google maps' }}
+          placeholder="Enter ingredients, get recipe.."
+          inputProps={{ 'aria-label': 'search recipes' }}
         />
+        
+        <Divider orientation="vertical" variant="middle" flexItem></Divider>
+
         <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
           <SearchIcon />
         </IconButton>
