@@ -28,16 +28,16 @@ function RecipeCard(props) {
 
   return (
     
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 375 }}>
         <CardMedia
         component="img"
         alt="green iguana"
-        height="194"
+        height="200"
         image={props.image}
       />
 
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
             {props.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">

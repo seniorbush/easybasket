@@ -18,19 +18,20 @@ function FetchRecipes() {
     
     const searchRef = useRef(); 
     const [search, setSearch] = useState("");
-    const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired=true&number=6`)
+    const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&number=6`)
    
     const { data } = useFetch(url)
     
 
   return (
-    <Container sx={{mb:2, boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:2, mt:1, borderRadius:2, background:'linear-gradient(to bottom, #2196f3, #90caf9)'}}>
+    <div>
+    <Container sx={{mb:2, boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:2, mt:1, borderRadius:1, background:'linear-gradient(to bottom, #2196f3, #90caf9)'}}>
      
 
      {/* Search recipes, API call */}
       <Paper
         component="form"
-        sx={{ boxShadow: 3, p: '2px 4px', display: 'flex', alignItems: 'center', width: 400}}
+        sx={{ boxShadow: 3, p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,borderRadius:6,}}
       >
         <IconButton sx={{ p: '10px' }} aria-label="menu">
         </IconButton>
@@ -49,27 +50,29 @@ function FetchRecipes() {
         type="button" 
         sx={{ p: '10px' }} 
         aria-label="search"
-        onClick={(e) => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired=true&query=${search}&number=6`)}
+        onClick={(e) => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=6`)}
         >
           <SearchIcon />
         </IconButton>
       </Paper>
 
-
+      </Container>
 
 
         {/* Search results */}
 
         <Splide
             options={ {
-            height: "60vh",
-            autoplay: true,
+            focus  : 'center',
             perPage:3,
             perMove:1,
-            focus  : 'center',
+            autoScroll: {
+              speed: 1,
+            },
             gap:"1rem",
+            arrows: false,
             pagination: false,
-            arrows: false
+            height: "370px"
             }}>
                 {data && data.map(recipe => (
                     <SplideSlide divider key={recipe.id+recipe.title}  >
@@ -80,7 +83,8 @@ function FetchRecipes() {
 
 
 
-    </Container>
+    
+    </div>
   )
 }
 

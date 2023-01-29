@@ -17,7 +17,7 @@ function App() {
 
         <FetchRecipes/>{/*Navbar and Search Results*/}
 
-        <Grid container spacing={1} alignItems="center" sx={{mt:1}} >
+        <Grid container alignItems="center" sx={{mt:1}} >
 
           <Grid item xs={12}>
             <ShoppingList />
