@@ -1,69 +1,30 @@
 import { Grid, Container } from '@mui/material';
 import './App.css';
-import FetchCard from './FetchCard';
-import Navbar from './Navbar';
-import RecipeCard from './RecipeCard';
+import FetchRecipes from './FetchRecipes';
 
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css/skyblue';
+import ShoppingList from './ShoppingList';
+
+
 
 function App() {
   return (
   
     <div className="App">
 
-      <Navbar/>
-    
+
+
       <Container>
 
-      
+        <FetchRecipes/>{/*Navbar and Search Results*/}
 
-        <Grid container 
-        spacing={2}
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: '90vh' }}>
-          
-          <Grid item xs={12}>
-          <Splide
-        options={ {
-          height: "60vh",
-          autoplay: true,
-          perPage:3,
-          perMove:1,
-          focus  : 'center',
-          gap:"1rem",
-          pagination: false,
-          arrows: false
-        } }
-      >
-
-          <SplideSlide>
-            <RecipeCard/>
-          </SplideSlide>
-          <SplideSlide>
-            <RecipeCard/>
-          </SplideSlide>
-          <SplideSlide>
-            <RecipeCard/>
-          </SplideSlide>
-          <SplideSlide>
-            <RecipeCard/>
-          </SplideSlide>
-          <SplideSlide>
-            <RecipeCard/>
-          </SplideSlide>
-
-        </Splide>
-          </Grid>
-
+        <Grid container spacing={1} alignItems="center" sx={{mt:1}} >
 
           <Grid item xs={12}>
+            <ShoppingList />
           </Grid>
-          
-          
-        
+
         </Grid>
+
 
       </Container>
     

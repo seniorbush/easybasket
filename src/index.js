@@ -5,13 +5,14 @@ import App from './App';
 import { createTheme, ThemeProvider } from '@mui/material';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#f25939",
+      main: "#2196f3",
     },
     secondary: {
-      main: "#fdb0a1",
+      main: "#90caf9",
     }
   },
   typography: {
