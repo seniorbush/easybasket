@@ -1,4 +1,4 @@
-import { Container, Divider, Typography } from '@mui/material'
+import { Container, Divider } from '@mui/material'
 import { useRef, useState } from 'react';
 import { useFetch } from './Hooks/useFetch';
 
@@ -11,6 +11,8 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css/skyblue';
 import RecipeCard from './RecipeCard';
 
+import { useRecipe } from './Hooks/useRecipe';
+
 
 
 
@@ -18,10 +20,20 @@ function FetchRecipes() {
     
     const searchRef = useRef(); 
     const [search, setSearch] = useState("");
-    const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&number=6`)
+    const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&number=1`)
+    const [items, setItems] = useState();
    
     const { data } = useFetch(url)
-    
+    const { ingredients } = useRecipe(items);
+
+
+
+    const handleRecipe = (id) => {
+      setItems(id)
+    }
+
+  // console.log(ingredients)
+
 
   return (
     <div>
@@ -33,7 +45,7 @@ function FetchRecipes() {
         component="form"
         sx={{ boxShadow: 3, p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,borderRadius:6,}}
       >
-        <IconButton sx={{ p: '10px' }} aria-label="menu">
+        <IconButton sx={{ p: '10px' }} aria-label="search container">
         </IconButton>
         <InputBase
           ref={searchRef}
@@ -50,7 +62,7 @@ function FetchRecipes() {
         type="button" 
         sx={{ p: '10px' }} 
         aria-label="search"
-        onClick={(e) => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=6`)}
+        onClick={(e) => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=1`)}
         >
           <SearchIcon />
         </IconButton>
@@ -75,9 +87,15 @@ function FetchRecipes() {
             height: "370px"
             }}>
                 {data && data.map(recipe => (
-                    <SplideSlide divider key={recipe.id+recipe.title}  >
-                        <RecipeCard key={recipe.id} image={recipe.image} title={recipe.title}/>
+                    <SplideSlide divider="true" key={recipe.id+recipe.title}  >
+                        <RecipeCard 
+                        key={recipe.id} 
+                        image={recipe.image} 
+                        title={recipe.title}
+                        handleRecipe={() => handleRecipe(recipe.id)}
+                        />
                     </SplideSlide>
+                    
                 ))}
         </Splide>    
 

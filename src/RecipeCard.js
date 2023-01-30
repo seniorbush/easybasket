@@ -1,37 +1,17 @@
-import { Card, CardMedia, CardContent, CardActions, Typography } from '@mui/material'
-import { useState} from 'react'
-import { styled } from '@mui/material/styles';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
+import { Button, Card, CardMedia, CardContent, CardActions, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import IconButton from '@mui/material/IconButton';
 
 function RecipeCard(props) {
-
-  const [expanded, setExpanded] = useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
 
   return (
     
-    <Card sx={{ maxWidth: 375 }}>
+    <Card sx={{ maxWidth: 380, minHeight: 360 }}>
+
         <CardMedia
         component="img"
-        alt="green iguana"
+        alt="Food Image"
         height="200"
         image={props.image}
       />
@@ -45,35 +25,19 @@ function RecipeCard(props) {
       </CardContent>
 
 
-      <CardActions disableSpacing>
-
-        <IconButton aria-label="add to list">
+      <CardActions disableSpacing sx={{justifyContent:"space-evenly"}} >
+        <Button variant="contained" size="small">Method</Button>
+        
+        <IconButton aria-label="add to list" onClick={() => props.handleRecipe(props.id)}>
           <AddIcon />
         </IconButton>
 
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-
       </CardActions>
      
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-         
-          <Typography paragraph>
-            
-          </Typography>
-          
-        </CardContent>
-      </Collapse>
+      
+      
 
-    </Card>
+      </Card>
 
 
   )

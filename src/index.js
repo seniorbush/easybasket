@@ -22,11 +22,11 @@ const theme = createTheme({
 
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
     
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 

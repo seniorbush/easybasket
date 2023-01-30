@@ -1,13 +1,13 @@
-import { Card, Container, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material"
+import { Card, Container, Table, TableCell, TableHead, TableBody, TableRow, Typography } from "@mui/material"
 
 
 function ShoppingList() {
   return (
-    <Container sx={{mt:1, boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:2, borderRadius:1, width:"100%", background:'linear-gradient(to top, #2196f3, #90caf9)'}}>
+    <Container sx={{ boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:1, borderRadius:1, width:"100%", background:'linear-gradient(to top, #2196f3, #90caf9)'}}>
         <Card
             sx={{
             minHeight: "40vh",
-            minWidth: "50%",
+            
             display: "flex",
             flexDirection: "column",
             alignItems: 'top',
@@ -28,6 +28,9 @@ function ShoppingList() {
                             <TableCell align="right">Measurement</TableCell>
                         </TableRow>
                     </TableHead>
+                    <TableBody>
+          
+                    </TableBody>
                 </Table>
 
 
