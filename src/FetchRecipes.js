@@ -1,4 +1,4 @@
-import { Container, Divider } from '@mui/material'
+import { Container, Divider, TableCell, TableRow } from '@mui/material'
 import { useRef, useState } from 'react';
 import { useFetch } from './Hooks/useFetch';
 
@@ -12,6 +12,7 @@ import '@splidejs/react-splide/css/skyblue';
 import RecipeCard from './RecipeCard';
 
 import { useRecipe } from './Hooks/useRecipe';
+import ShoppingList from './ShoppingList';
 
 
 
@@ -32,7 +33,7 @@ function FetchRecipes() {
       setItems(id)
     }
 
-  // console.log(ingredients)
+  console.log(ingredients)
 
 
   return (
@@ -99,9 +100,17 @@ function FetchRecipes() {
                 ))}
         </Splide>    
 
+        <ShoppingList
+        body={
+          ingredients && ingredients.map(item => (
+            <TableRow key={item.id}>
+              <TableCell key={item.name}>{item.nameClean.toUpperCase()}</TableCell>
+              <TableCell key={item.aisle} align="right">{item.amount}</TableCell>
+              <TableCell key={item.originalName} align="right">{item.unit}</TableCell>
+            </TableRow>    
+        ))}/>
 
 
-    
     </div>
   )
 }

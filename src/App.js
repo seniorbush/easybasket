@@ -2,7 +2,7 @@ import { Grid, Container } from '@mui/material';
 import './App.css';
 import FetchRecipes from './FetchRecipes';
 
-import ShoppingList from './ShoppingList';
+// import ShoppingList from './ShoppingList';
 
 // 
 
@@ -70,7 +70,6 @@ function App() {
         <Grid container alignItems="center" sx={{mt:1}} >
 
           <Grid item xs={12}>
-            <ShoppingList />
           </Grid>
 
         </Grid>

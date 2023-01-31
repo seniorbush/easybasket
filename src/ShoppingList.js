@@ -1,7 +1,7 @@
 import { Card, Container, Table, TableCell, TableHead, TableBody, TableRow, Typography } from "@mui/material"
 
 
-function ShoppingList() {
+function ShoppingList(props) {
   return (
     <Container sx={{ boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:1, borderRadius:1, width:"100%", background:'linear-gradient(to top, #2196f3, #90caf9)'}}>
         <Card
@@ -29,7 +29,7 @@ function ShoppingList() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-          
+                        {props.body}
                     </TableBody>
                 </Table>
 
