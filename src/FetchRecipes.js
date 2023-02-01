@@ -27,13 +27,22 @@ function FetchRecipes() {
     const { data } = useFetch(url)
     const { ingredients } = useRecipe(items);
 
+    
 
 
     const handleRecipe = (id) => {
       setItems(id)
     }
 
-  console.log(ingredients)
+
+
+
+// TEST
+
+  // let stuff = [ingredients]
+  // console.log(stuff)
+
+//
 
 
   return (
@@ -46,6 +55,8 @@ function FetchRecipes() {
         component="form"
         sx={{ boxShadow: 3, p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,borderRadius:6,}}
       >
+
+        
         <IconButton sx={{ p: '10px' }} aria-label="search container">
         </IconButton>
         <InputBase
@@ -63,7 +74,7 @@ function FetchRecipes() {
         type="button" 
         sx={{ p: '10px' }} 
         aria-label="search"
-        onClick={(e) => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=1`)}
+        onClick={() => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=1`)}
         >
           <SearchIcon />
         </IconButton>
@@ -104,10 +115,11 @@ function FetchRecipes() {
         body={
           ingredients && ingredients.map(item => (
             <TableRow key={item.id}>
-              <TableCell key={item.name}>{item.nameClean.toUpperCase()}</TableCell>
-              <TableCell key={item.aisle} align="right">{item.amount}</TableCell>
-              <TableCell key={item.originalName} align="right">{item.unit}</TableCell>
-            </TableRow>    
+              <TableCell key={item.id+" "+item.nameClean}>{item.nameClean.toUpperCase()}</TableCell>
+              <TableCell key={item.id+" "+item.measures.metric.amount} align="right">{parseInt(item.measures.metric.amount)}</TableCell>
+              <TableCell key={item.id+" "+item.measures.metric.unitShort} align="left">{item.measures.metric.unitShort}</TableCell>
+            </TableRow>   
+
         ))}/>
 
 
