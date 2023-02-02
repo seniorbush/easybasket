@@ -12,10 +12,7 @@ export const useRecipe = (id) => {
     }, [id])
 
     
-
+    
     return { ingredients }
 }
 
-// res.data.extendedIngredients.nameClean = name
-// res.data.extendedIngredients.amount = qty
-// res.data.extendedIngredients.unit = measurement

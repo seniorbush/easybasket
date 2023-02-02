@@ -27,8 +27,7 @@ function FetchRecipes() {
     const { data } = useFetch(url)
     const { ingredients } = useRecipe(items);
 
-    
-
+  
 
     const handleRecipe = (id) => {
       setItems(id)
