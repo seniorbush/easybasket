@@ -3,7 +3,7 @@ import { Card, Container, Table, TableCell, TableHead, TableBody, TableRow, Typo
 
 function ShoppingList(props) {
   return (
-    <Container sx={{ boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:1, borderRadius:1, width:"100%", background:'linear-gradient(to top, #2196f3, #90caf9)'}}>
+    <Container sx={{ boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:1, borderRadius:1, width:"100%", background:'linear-gradient(to top, #FF7600, #FFA900)'}}>
         <Card
             sx={{
             minHeight: "40vh",

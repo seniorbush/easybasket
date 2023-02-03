@@ -12,7 +12,7 @@ function Navbar() {
         pt:1, 
         mt:1, 
         borderRadius:1, 
-        background:'linear-gradient(to top, #2196f3, #90caf9)'     
+        bgcolor: '#CD113B'
         
         }}>
 

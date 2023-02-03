@@ -46,7 +46,7 @@ function FetchRecipes() {
 
   return (
     <div>
-    <Container sx={{mb:2, boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:2, mt:1, borderRadius:1, background:'linear-gradient(to bottom, #2196f3, #90caf9)'}}>
+    <Container sx={{mb:2, boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:2, mt:1, borderRadius:1,         background:'linear-gradient(to bottom, #FF7600, #FFA900)'}}>
      
 
      {/* Search recipes, API call */}
@@ -88,14 +88,19 @@ function FetchRecipes() {
             options={ {
             focus  : 'center',
             perPage:3,
+            breakpoints: {
+              640: {
+                perPage: 1,
+              },
+            },
             perMove:1,
             autoScroll: {
               speed: 1,
             },
             gap:"1rem",
             arrows: false,
-            pagination: false,
-            height: "370px"
+            pagination: true,
+            height: "395px"
             }}>
                 {data && data.map(recipe => (
                     <SplideSlide divider="true" key={recipe.id+recipe.title}  >

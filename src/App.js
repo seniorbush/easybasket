@@ -26,7 +26,8 @@ function App() {
       <Container>
 
         <FetchRecipes/>{/*Navbar and Search Results*/}
-{/* 
+        
+        {/* 
 
         <Splide
             options={ {
