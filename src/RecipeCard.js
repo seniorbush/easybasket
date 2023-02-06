@@ -14,6 +14,7 @@ function RecipeCard(props) {
         alt="Food Image"
         height="200"
         image={props.image}
+        sx={{objectFit: 'cover'}}
       />
 
       <CardContent>
