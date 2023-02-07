@@ -1,4 +1,5 @@
 import { Card, Container, Table, TableCell, TableHead, TableBody, TableRow, Typography } from "@mui/material"
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 function ShoppingList(props) {
   return (
@@ -20,8 +21,13 @@ function ShoppingList(props) {
                     color: "#fff", 
                     letterSpacing: 1, 
                     backgroundColor:"#A7727D",
-                    borderRadius: 1}} >
-                    Checklist 
+                    boxShadow: 3,
+                    borderRadius: 6,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"}} >
+                    
+                    <LocalGroceryStoreIcon />
                     
                 </Typography>
 

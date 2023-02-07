@@ -7,7 +7,7 @@ function RecipeCard(props) {
 
   return (
     
-    <Card sx={{ maxWidth: 380, minHeight: 360, backgroundColor: "#F9F5E7"}}>
+    <Card sx={{ maxWidth: 380, minHeight: 360, backgroundColor: "#F9F5E7", display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
 
         <CardMedia
         component="img"
@@ -17,8 +17,8 @@ function RecipeCard(props) {
         sx={{objectFit: 'cover'}}
       />
 
-      <CardContent>
-        <Typography gutterBottom variant='h5' component="div" sx={{fontWeight: 500, color: "#A7727D"}}>
+      <CardContent sx={{height: 70}}>
+        <Typography gutterBottom variant='h6' component="div" sx={{fontWeight: 500, color: "#A7727D"}}>
             {props.title}
         </Typography>
       </CardContent>
