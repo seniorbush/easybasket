@@ -27,8 +27,8 @@ function App() {
 
         <FetchRecipes/>{/*Navbar and Search Results*/}
         
-        {/* 
-
+        
+{/* 
         <Splide
             options={ {
             autoplay: true,

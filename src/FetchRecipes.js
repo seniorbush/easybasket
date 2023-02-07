@@ -40,7 +40,7 @@ function FetchRecipes() {
 
   return (
     <div>
-    <Container sx={{mb:2, boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:2, mt:1, borderRadius:1,         background:'linear-gradient(to bottom, #FF7600, #FFA900)'}}>
+    <Container sx={{mb:2, boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:2, mt:1, borderRadius:1, background:'linear-gradient(to bottom, #EDDBC7, #F8EAD8)'}}>
      
 
      {/* Search recipes, API call */}
@@ -80,6 +80,8 @@ function FetchRecipes() {
 
         <Splide
             options={ {
+            autoplay: true,
+            rewind:true,
             focus  : 'center',
             perPage:3,
             breakpoints: {

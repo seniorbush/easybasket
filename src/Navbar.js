@@ -12,7 +12,7 @@ function Navbar() {
         pt:1, 
         mt:1, 
         borderRadius:1, 
-        bgcolor: '#CD113B'
+        bgcolor: '#A7727D'
         
         }}>
 

@@ -1,9 +1,8 @@
 import { Card, Container, Table, TableCell, TableHead, TableBody, TableRow, Typography } from "@mui/material"
 
-
 function ShoppingList(props) {
   return (
-    <Container sx={{ boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:1, borderRadius:1, width:"100%", background:'linear-gradient(to top, #FF7600, #FFA900)'}}>
+    <Container sx={{ boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:1, borderRadius:1, width:"100%", background:'linear-gradient(to top, #EDDBC7, #F8EAD8)'}}>
         <Card
             sx={{
             minHeight: "40vh",
@@ -16,8 +15,14 @@ function ShoppingList(props) {
             boxShadow: 3 
             }}>
 
-                <Typography variant="h5" >
-                    Shopping List
+                <Typography variant="h5" sx={{
+                    padding: 1,
+                    color: "#fff", 
+                    letterSpacing: 1, 
+                    backgroundColor:"#A7727D",
+                    borderRadius: 1}} >
+                    Checklist 
+                    
                 </Typography>
 
                 <Table stickyHeader>
