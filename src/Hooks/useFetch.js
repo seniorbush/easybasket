@@ -8,7 +8,7 @@ export const useFetch = (url) => {
     useEffect(() => {
         axios.get(url)
         .then(res => {setData(res.data.results)})
-        .catch(err => {console.log(err)})
+        .catch(err => {console.log("useFetch:\n" + err.message + "\nExceeded daily API requests")})
     }, [url])
 
     

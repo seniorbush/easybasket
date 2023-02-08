@@ -16,18 +16,17 @@ import ShoppingList from './ShoppingList';
 
 
 
-
 function FetchRecipes() {
     
     const searchRef = useRef(); 
     const [search, setSearch] = useState("");
+
     const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&number=3`)
-    const [items, setItems] = useState();
-   
     const { data } = useFetch(url)
+   
+    const [items, setItems] = useState();
     const { ingredients } = useRecipe(items);
 
-  
 
     const handleRecipe = (id) => {
       setItems(id)
@@ -89,6 +88,7 @@ function FetchRecipes() {
                 perPage: 1,
               },
             },
+            flickPower: 500,
             perMove:1,
             autoScroll: {
               speed: 1,
@@ -114,8 +114,8 @@ function FetchRecipes() {
         <ShoppingList
         body={
           ingredients && ingredients.map(item => (
-            <TableRow key={item.id}>
-              <TableCell key={item.id+" "+item.nameClean}>{item.nameClean.toUpperCase()}</TableCell>
+            <TableRow key={item.id} onClick={()=> console.log("clicked row")}>
+              <TableCell key={item.id+" "+item.nameClean}>{item.nameClean}</TableCell>
               <TableCell key={item.id+" "+item.measures.metric.amount} align="right">{parseInt(item.measures.metric.amount)}</TableCell>
               <TableCell key={item.id+" "+item.measures.metric.unitShort} align="left">{item.measures.metric.unitShort}</TableCell>
             </TableRow>   

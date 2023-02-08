@@ -7,11 +7,11 @@ export const useRecipe = (id) => {
     useEffect(() => {
         axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${process.env.REACT_APP_API_KEY}`)
         .then(res => {setIngredients(ingredients => [...ingredients, ...res.data.extendedIngredients])})
-        .catch(err => {console.log(err)})
+        .catch(err => {console.log("useRecipe:\n" + err.message)})
     }, [id] )
 
-    
-    
+
+
     return { ingredients }
 }
 
