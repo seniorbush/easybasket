@@ -7,7 +7,7 @@ function RecipeCard(props) {
 
   return (
     
-    <Card sx={{ maxWidth: 380, minHeight: 360, backgroundColor: "#F9F5E7", display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+    <Card sx={{ borderRadius:6, maxWidth: 380, minHeight: 360, backgroundColor: "#F9F5E7", display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
 
         <CardMedia
         component="img"

@@ -34,13 +34,14 @@ function ShoppingList(props) {
                 <Table stickyHeader>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Ingredient</TableCell>
-                            <TableCell align="right">Quantity</TableCell>
-                            <TableCell align="right">Measurement</TableCell>
+                            <TableCell>Item</TableCell>
+                            <TableCell align="right">Qty</TableCell>
+                            <TableCell align="right">Unit</TableCell>
+                            <TableCell align="right"></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props.body}
+                        {props.body}    
                     </TableBody>
                 </Table>
 

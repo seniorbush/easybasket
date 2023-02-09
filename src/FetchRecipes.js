@@ -1,4 +1,4 @@
-import { Container, Divider, TableCell, TableRow } from '@mui/material'
+import { TextField, Container, Divider, TableCell, TableRow } from '@mui/material'
 import { useRef, useState } from 'react';
 import { useFetch } from './Hooks/useFetch';
 
@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
@@ -25,15 +26,21 @@ function FetchRecipes() {
     const { data } = useFetch(url)
    
     const [items, setItems] = useState();
-    const { ingredients } = useRecipe(items);
+    const { ingredients, setIngredients } = useRecipe(items);
 
-
+    // const [list, setList] = useState([]);
+ 
     const handleRecipe = (id) => {
       setItems(id)
     }
 
+   
 
-
+    const handleDelete = (id) => {
+      setIngredients( ingredients.filter((event) => {
+        return id !== event.id
+      }))
+    }
 
 
 
@@ -43,9 +50,22 @@ function FetchRecipes() {
      
 
      {/* Search recipes, API call */}
-      <Paper
+     <TextField 
+        id="outlined-basic" 
+        label="Enter ingredient(s), get recipes.." 
+        variant="standard" 
+        type={search}
+        value={search}
+        fullWidth
+        onChange={(e) => setSearch(e.target.value)}
+        onSubmit={() => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=3`)}
+        inputProps={{ 'aria-label': 'search recipes' }}
+        sx={{ ml:'10%', mr:'10%'}}
+     />
+      {/* <Paper
         component="form"
         sx={{ boxShadow: 3, p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,borderRadius:6,}}
+      
       >
 
         
@@ -70,7 +90,7 @@ function FetchRecipes() {
         >
           <SearchIcon />
         </IconButton>
-      </Paper>
+      </Paper> */}
 
       </Container>
 
@@ -114,10 +134,19 @@ function FetchRecipes() {
         <ShoppingList
         body={
           ingredients && ingredients.map(item => (
-            <TableRow key={item.id} onClick={()=> console.log("clicked row")}>
-              <TableCell key={item.id+" "+item.nameClean}>{item.nameClean}</TableCell>
+            <TableRow key={item.id}>
+              <TableCell key={item.id+" "+item.nameClean} sx={{textTransform: "capitalize"}}>{item.nameClean}</TableCell>
               <TableCell key={item.id+" "+item.measures.metric.amount} align="right">{parseInt(item.measures.metric.amount)}</TableCell>
-              <TableCell key={item.id+" "+item.measures.metric.unitShort} align="left">{item.measures.metric.unitShort}</TableCell>
+              <TableCell key={item.id+" "+item.measures.metric.unitShort} align="right">{item.measures.metric.unitShort}</TableCell>
+              
+              <TableCell key={item.id+"x"} >
+                <IconButton aria-label='remove from list'
+                sx={{color:"#A7727D"}}
+                onClick={()=> handleDelete(item.id)}align="left">
+                  <DeleteIcon/>
+                </IconButton>             
+              </TableCell>
+       
             </TableRow>   
 
         ))}/>
