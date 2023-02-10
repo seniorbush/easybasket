@@ -1,6 +1,7 @@
 import { Grid, Container } from '@mui/material';
 import './App.css';
 import FetchRecipes from './FetchRecipes';
+import Footer from './Footer';
 
 // import ShoppingList from './ShoppingList';
 
@@ -75,6 +76,7 @@ function App() {
 
         </Grid>
 
+        <Footer />
 
       </Container>
     

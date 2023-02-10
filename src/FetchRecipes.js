@@ -1,9 +1,8 @@
-import { TextField, Container, Divider, TableCell, TableRow } from '@mui/material'
-import { useRef, useState } from 'react';
+import { Button, TextField, Container, TableCell, TableRow, Box } from '@mui/material'
+import { useState } from 'react';
 import { useFetch } from './Hooks/useFetch';
 
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
+
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -19,7 +18,6 @@ import ShoppingList from './ShoppingList';
 
 function FetchRecipes() {
     
-    const searchRef = useRef(); 
     const [search, setSearch] = useState("");
 
     const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&number=3`)
@@ -43,6 +41,14 @@ function FetchRecipes() {
     }
 
 
+    const handleKeyPress = (e) => {
+      const key = e.key;
+        if(key === "Enter") {
+          setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=3`)
+        }
+      }
+    
+
 
   return (
     <div>
@@ -50,18 +56,37 @@ function FetchRecipes() {
      
 
      {/* Search recipes, API call */}
-     <TextField 
-        id="outlined-basic" 
-        label="Enter ingredient(s), get recipes.." 
-        variant="standard" 
-        type={search}
-        value={search}
-        fullWidth
-        onChange={(e) => setSearch(e.target.value)}
-        onSubmit={() => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=3`)}
-        inputProps={{ 'aria-label': 'search recipes' }}
-        sx={{ ml:'10%', mr:'10%'}}
-     />
+     <Box sx={{
+        width: 400,
+        maxWidth: '100%',
+      
+      }}>
+      <TextField 
+          size='small'
+          id="outlined-basic" 
+          label="Enter ingredient(s), get recipes.." 
+          variant="outlined" 
+          name='search'
+          value={search}
+          fullWidth
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={(e) => handleKeyPress(e)}
+          inputProps={{ 'aria-label': 'search recipes' }}
+          sx={{display: 'flex', alignItems: 'center'}}      
+      />
+        <Button 
+        variant="contained"
+        name="submit"
+        type="submit" 
+        sx={{ mt:1 }} 
+        aria-label="search"
+        onClick={() => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=3`)}
+        >
+          <SearchIcon />
+        </Button>
+        
+     </Box>
+     
       {/* <Paper
         component="form"
         sx={{ boxShadow: 3, p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,borderRadius:6,}}

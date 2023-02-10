@@ -3,11 +3,11 @@ import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 function ShoppingList(props) {
   return (
-    <Container sx={{ boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:1, borderRadius:1, width:"100%", background:'linear-gradient(to top, #EDDBC7, #F8EAD8)'}}>
+    <Container sx={{ boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:2, borderRadius:1, width:"100%", background:'linear-gradient(to top, #EDDBC7, #F8EAD8)'}}>
         <Card
             sx={{
             minHeight: "40vh",
-            
+            width: 400,
             display: "flex",
             flexDirection: "column",
             alignItems: 'top',
@@ -22,7 +22,7 @@ function ShoppingList(props) {
                     letterSpacing: 1, 
                     backgroundColor:"#A7727D",
                     boxShadow: 3,
-                    borderRadius: 6,
+                    borderRadius: 1,
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center"}} >
