@@ -2,6 +2,7 @@ import { Grid, Container } from '@mui/material';
 import './App.css';
 import FetchRecipes from './FetchRecipes';
 import Footer from './Footer';
+import MethodModal from './MethodModal';
 
 // import ShoppingList from './ShoppingList';
 
@@ -19,6 +20,7 @@ function App() {
   return (
   
     <div className="App">
+      
       <Container>
         <Navbar />
       </Container>
@@ -75,7 +77,7 @@ function App() {
           </Grid>
 
         </Grid>
-
+        
         <Footer />
 
       </Container>

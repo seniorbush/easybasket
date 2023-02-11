@@ -11,7 +11,6 @@ export const useFetch = (url) => {
         .catch(err => {console.log("useFetch:\n" + err.message + "\nExceeded daily API requests")})
     }, [url])
 
-    
 
     return { data }
 }

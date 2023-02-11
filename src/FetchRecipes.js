@@ -13,6 +13,7 @@ import RecipeCard from './RecipeCard';
 
 import { useRecipe } from './Hooks/useRecipe';
 import ShoppingList from './ShoppingList';
+import MethodModal from './MethodModal';
 
 
 
@@ -20,19 +21,20 @@ function FetchRecipes() {
     
     const [search, setSearch] = useState("");
 
-    const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&number=3`)
+    const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired='true'&number=3`)
     const { data } = useFetch(url)
    
     const [items, setItems] = useState();
     const { ingredients, setIngredients } = useRecipe(items);
-
-    // const [list, setList] = useState([]);
  
     const handleRecipe = (id) => {
-      setItems(id)
+      setItems(id)      
     }
-
-   
+    
+    const handleMethod = (id) => {
+      setItems(id)
+      return <MethodModal />      
+    }
 
     const handleDelete = (id) => {
       setIngredients( ingredients.filter((event) => {
@@ -74,6 +76,7 @@ function FetchRecipes() {
           inputProps={{ 'aria-label': 'search recipes' }}
           sx={{display: 'flex', alignItems: 'center'}}      
       />
+
         <Button 
         variant="contained"
         name="submit"
@@ -81,41 +84,9 @@ function FetchRecipes() {
         sx={{ mt:1 }} 
         aria-label="search"
         onClick={() => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=3`)}
-        >
-          <SearchIcon />
-        </Button>
+        ><SearchIcon /></Button>
         
      </Box>
-     
-      {/* <Paper
-        component="form"
-        sx={{ boxShadow: 3, p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,borderRadius:6,}}
-      
-      >
-
-        
-        <IconButton sx={{ p: '10px' }} aria-label="search container">
-        </IconButton>
-        <InputBase
-          ref={searchRef}
-          sx={{ flex: 1 }}
-          placeholder="Enter ingredient(s), get recipes.."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          inputProps={{ 'aria-label': 'search recipes' }}
-        />
-        
-        <Divider orientation="vertical" variant="middle" flexItem></Divider>
-
-        <IconButton 
-        type="button" 
-        sx={{ p: '10px' }} 
-        aria-label="search"
-        onClick={() => setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=3`)}
-        >
-          <SearchIcon />
-        </IconButton>
-      </Paper> */}
 
       </Container>
 
@@ -149,6 +120,7 @@ function FetchRecipes() {
                         key={recipe.id} 
                         image={recipe.image} 
                         title={recipe.title}
+                        handleMethod={() => handleMethod(recipe.id)}
                         handleRecipe={() => handleRecipe(recipe.id)}
                         />
                     </SplideSlide>
@@ -157,13 +129,16 @@ function FetchRecipes() {
         </Splide>    
 
         <ShoppingList
+        
         body={
+          
           ingredients && ingredients.map(item => (
+            
             <TableRow key={item.id}>
+
               <TableCell key={item.id+" "+item.nameClean} sx={{textTransform: "capitalize"}}>{item.nameClean}</TableCell>
-              <TableCell key={item.id+" "+item.measures.metric.amount} align="right">{parseInt(item.measures.metric.amount)}</TableCell>
-              <TableCell key={item.id+" "+item.measures.metric.unitShort} align="right">{item.measures.metric.unitShort}</TableCell>
-              
+              <TableCell key={item.id+" "+item.measures.metric.amount} align="right">{Math.ceil(item.measures.metric.amount)}</TableCell>
+              <TableCell key={item.id+" "+item.measures.metric.unitShort} align="right" sx={{textTransform: "lowercase"}}>{item.measures.metric.unitShort}</TableCell>
               <TableCell key={item.id+"x"} >
                 <IconButton aria-label='remove from list'
                 sx={{color:"#A7727D"}}
@@ -171,7 +146,6 @@ function FetchRecipes() {
                   <DeleteIcon/>
                 </IconButton>             
               </TableCell>
-       
             </TableRow>   
 
         ))}/>

@@ -7,7 +7,7 @@ function RecipeCard(props) {
 
   return (
     
-    <Card sx={{ borderRadius:6, maxWidth: 380, minHeight: 360, backgroundColor: "#F9F5E7", display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+    <Card sx={{ borderRadius:5, maxWidth: 380, minHeight: 360, backgroundColor: "#F9F5E7", display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
 
         <CardMedia
         component="img"
@@ -25,7 +25,8 @@ function RecipeCard(props) {
 
 
       <CardActions disableSpacing sx={{justifyContent:"space-evenly", backgroundColor: "#F8EAD8"}} >
-        <Button variant="contained" size="small">Method</Button>
+        <Button variant="contained" size="small"
+        onClick={() => props.handleMethod(props.id)}>Method</Button>
         
         <IconButton aria-label="add to list" onClick={() => props.handleRecipe(props.id)}>
           <AddIcon />
