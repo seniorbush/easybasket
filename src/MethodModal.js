@@ -5,12 +5,12 @@ const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(-50%, -47%)',
+  transform: 'translate(-50%, -45%)',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   width: 343,
-  height: 500,
+  height: 525,
   bgcolor: 'background.paper',
   boxShadow: 24,
   borderRadius: 5,
@@ -20,31 +20,31 @@ const style = {
 function MethodModal(props) {
 
   const [open, setOpen] = useState(true);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
+  // const handleToggle = () => setOpen(props.handleModal);
+  
 
   return (
-
-    <Backdrop>
-      <Button onClick={handleOpen}>Open modal</Button>
-
+    
+    <Backdrop open={props.handleModal}>
       <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
-          open={open}
+          open={props.handleModal}
           onClose={handleClose}
           closeAfterTransition
         >
-          <Fade in={open}>
-            <Box sx={style}>
-              <Typography>TEST</Typography>
-            </Box>
-          </Fade>
-        </Modal>
-    </Backdrop>
-
-
-    
+        <Fade in={props.handleModal}>
+          <Box sx={style}>
+            
+            <Button onClick={handleClose}>open/close</Button>
+            <Typography>TEST</Typography>
+          
+          </Box>
+        </Fade>
+      </Modal>
+    </Backdrop> 
   )
 }
 

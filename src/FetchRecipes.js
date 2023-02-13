@@ -27,14 +27,21 @@ function FetchRecipes() {
     const [items, setItems] = useState();
     const { ingredients, setIngredients } = useRecipe(items);
  
+    const [handleModal, setHandleModal] = useState(false);
+    
+    const handleMethod = () => {
+      if(!handleModal) {
+        setHandleModal(true)
+      } else {
+        setHandleModal(false)
+      }  
+    }
+
+
     const handleRecipe = (id) => {
       setItems(id)      
     }
-    
-    const handleMethod = (id) => {
-      setItems(id)
-      return <MethodModal />      
-    }
+
 
     const handleDelete = (id) => {
       setIngredients( ingredients.filter((event) => {
@@ -42,7 +49,7 @@ function FetchRecipes() {
       }))
     }
 
-
+    
     const handleKeyPress = (e) => {
       const key = e.key;
         if(key === "Enter") {
@@ -50,12 +57,16 @@ function FetchRecipes() {
         }
       }
     
-
+    
 
   return (
     <div>
+
+    
+
     <Container sx={{mb:2, boxShadow: 3, display:"flex", justifyContent:"center", alignItems: "center", padding:2, mt:1, borderRadius:1, background:'linear-gradient(to bottom, #EDDBC7, #F8EAD8)'}}>
      
+    
 
      {/* Search recipes, API call */}
      <Box sx={{
@@ -120,7 +131,7 @@ function FetchRecipes() {
                         key={recipe.id} 
                         image={recipe.image} 
                         title={recipe.title}
-                        handleMethod={() => handleMethod(recipe.id)}
+                        handleMethod={handleMethod}
                         handleRecipe={() => handleRecipe(recipe.id)}
                         />
                     </SplideSlide>
@@ -150,6 +161,9 @@ function FetchRecipes() {
 
         ))}/>
 
+
+
+    <MethodModal handleModal={handleModal}/>
 
     </div>
   )
