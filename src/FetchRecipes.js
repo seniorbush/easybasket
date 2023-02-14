@@ -29,14 +29,15 @@ function FetchRecipes() {
  
     const [handleModal, setHandleModal] = useState(false);
     
-    const handleMethod = () => {
-      if(!handleModal) {
-        setHandleModal(true)
-      } else {
-        setHandleModal(false)
-      }  
+    
+    const hideModal = () => {
+      setHandleModal(false)
     }
-
+  
+    const showModal = () => {
+        setHandleModal(true)
+      }
+    
 
     const handleRecipe = (id) => {
       setItems(id)      
@@ -131,7 +132,7 @@ function FetchRecipes() {
                         key={recipe.id} 
                         image={recipe.image} 
                         title={recipe.title}
-                        handleMethod={handleMethod}
+                        showModal={() => showModal}
                         handleRecipe={() => handleRecipe(recipe.id)}
                         />
                     </SplideSlide>
@@ -163,7 +164,7 @@ function FetchRecipes() {
 
 
 
-    <MethodModal handleModal={handleModal}/>
+    <MethodModal hideModal={hideModal} handleModal={handleModal}/>
 
     </div>
   )

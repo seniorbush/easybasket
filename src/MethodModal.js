@@ -20,25 +20,25 @@ const style = {
 function MethodModal(props) {
 
   const [open, setOpen] = useState(true);
-  const handleClose = () => setOpen(false);
+  const handleToggle = props.handleMethod;
   
   // const handleToggle = () => setOpen(props.handleModal);
   
 
   return (
     
-    <Backdrop open={props.handleModal}>
+    <Backdrop open={open}>
       <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
-          open={props.handleModal}
-          onClose={handleClose}
+          open={open}
+          onClose={handleToggle}
           closeAfterTransition
         >
-        <Fade in={props.handleModal}>
+        <Fade in={open}>
           <Box sx={style}>
             
-            <Button onClick={handleClose}>open/close</Button>
+            <Button onClick={() => setOpen(false)}>open/close</Button>
             <Typography>TEST</Typography>
           
           </Box>

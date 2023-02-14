@@ -26,7 +26,7 @@ function RecipeCard(props) {
 
       <CardActions disableSpacing sx={{justifyContent:"space-evenly", backgroundColor: "#F8EAD8"}} >
         <Button variant="contained" size="small"
-        onClick={() => props.handleMethod(props.id)}>Method</Button>
+        onClick={() => props.showModal}>Method</Button>
         
         <IconButton aria-label="add to list" onClick={() => props.handleRecipe(props.id)}>
           <AddIcon />
