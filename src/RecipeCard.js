@@ -1,9 +1,12 @@
 import { Button, Card, CardMedia, CardContent, CardActions, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
+import { useState } from 'react';
+import MethodModal from './MethodModal'
 
 function RecipeCard(props) {
 
+const [open, setOpen] = useState(false);
 
   return (
     
@@ -25,8 +28,10 @@ function RecipeCard(props) {
 
 
       <CardActions disableSpacing sx={{justifyContent:"space-evenly", backgroundColor: "#F8EAD8"}} >
-        <Button variant="contained" size="small"
-        onClick={() => props.showModal}>Method</Button>
+        <Button 
+        variant="contained" 
+        size="small"
+        onClick={() => setOpen(true)}>Method</Button>
         
         <IconButton aria-label="add to list" onClick={() => props.handleRecipe(props.id)}>
           <AddIcon />
@@ -35,7 +40,12 @@ function RecipeCard(props) {
       </CardActions>
      
       
-      
+      <MethodModal 
+
+      title={props.title}
+      open={open} 
+      setOpen={setOpen}/>
+
 
       </Card>
 

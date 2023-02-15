@@ -13,7 +13,7 @@ import RecipeCard from './RecipeCard';
 
 import { useRecipe } from './Hooks/useRecipe';
 import ShoppingList from './ShoppingList';
-import MethodModal from './MethodModal';
+// import MethodModal from './MethodModal';
 
 
 
@@ -29,10 +29,6 @@ function FetchRecipes() {
  
     const [handleModal, setHandleModal] = useState(false);
     
-    
-    const hideModal = () => {
-      setHandleModal(false)
-    }
   
     const showModal = () => {
         setHandleModal(true)
@@ -129,9 +125,11 @@ function FetchRecipes() {
                 {data && data.map(recipe => (
                     <SplideSlide divider="true" key={recipe.id+recipe.title}  >
                         <RecipeCard 
-                        key={recipe.id} 
+                        key={recipe.id}
+                        recipeId={recipe.id} 
                         image={recipe.image} 
                         title={recipe.title}
+                        handleModal={handleModal}
                         showModal={() => showModal}
                         handleRecipe={() => handleRecipe(recipe.id)}
                         />
@@ -164,7 +162,6 @@ function FetchRecipes() {
 
 
 
-    <MethodModal hideModal={hideModal} handleModal={handleModal}/>
 
     </div>
   )

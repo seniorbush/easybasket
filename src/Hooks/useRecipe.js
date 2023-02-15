@@ -13,7 +13,3 @@ export const useRecipe = (id) => {
     
     return { ingredients, setIngredients }
 }
-
-// {setIngredients(ingredients.filter(
-//     (item, index) => 
-//     ingredients.indexOf(item) === index))}
