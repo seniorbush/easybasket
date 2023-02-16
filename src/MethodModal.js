@@ -15,6 +15,8 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   borderRadius: 5,
+  padding: 2,
+  overflowX: 'scroll'
 };
 
 
@@ -32,8 +34,8 @@ function MethodModal(props) {
           <Box sx={style}>
             
             <Button onClick={() => props.setOpen(false)}>| CLOSE |</Button>
-            <Typography sx={{textAlign: 'center'}}>{props.title}</Typography>
-          
+            <Typography variant='h6' sx={{textAlign: 'center'}}>{props.title}</Typography>
+            {props.instructions && props.instructions.map(steps => (<Typography variant='p' key={steps.id}>{steps.step}</Typography>))}
           </Box>
       </Modal>
     

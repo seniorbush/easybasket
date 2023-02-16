@@ -13,7 +13,7 @@ import RecipeCard from './RecipeCard';
 
 import { useRecipe } from './Hooks/useRecipe';
 import ShoppingList from './ShoppingList';
-// import MethodModal from './MethodModal';
+
 
 
 
@@ -29,7 +29,8 @@ function FetchRecipes() {
  
     const [handleModal, setHandleModal] = useState(false);
     
-  
+
+
     const showModal = () => {
         setHandleModal(true)
       }
@@ -39,6 +40,7 @@ function FetchRecipes() {
       setItems(id)      
     }
 
+ 
 
     const handleDelete = (id) => {
       setIngredients( ingredients.filter((event) => {
@@ -55,7 +57,7 @@ function FetchRecipes() {
       }
     
     
-
+     
   return (
     <div>
 
