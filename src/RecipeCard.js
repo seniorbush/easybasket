@@ -10,9 +10,7 @@ function RecipeCard(props) {
 
 const [open, setOpen] = useState(false);
 
-const steps = () => {
-  
-}
+
 
 const { instructions } = useInstructions(props.recipeId)
 

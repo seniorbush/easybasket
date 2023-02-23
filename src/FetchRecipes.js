@@ -29,7 +29,7 @@ function FetchRecipes() {
  
     const [handleModal, setHandleModal] = useState(false);
     
-
+    console.log(ingredients[0])
 
     const showModal = () => {
         setHandleModal(true)
@@ -147,7 +147,7 @@ function FetchRecipes() {
           ingredients && ingredients.map(item => (
             
             <TableRow key={item.id}>
-
+              
               <TableCell key={item.id+" "+item.nameClean} sx={{textTransform: "capitalize"}}>{item.nameClean}</TableCell>
               <TableCell key={item.id+" "+item.measures.metric.amount} align="right">{Math.ceil(item.measures.metric.amount)}</TableCell>
               <TableCell key={item.id+" "+item.measures.metric.unitShort} align="right" sx={{textTransform: "lowercase"}}>{item.measures.metric.unitShort}</TableCell>

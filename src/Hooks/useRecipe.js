@@ -12,7 +12,7 @@ export const useRecipe = (id) => {
         })
         .catch(err => {console.log("useRecipe:\n" + err.message)})
     }, [id] )
-
+    
     
     return { ingredients, setIngredients }
 }
