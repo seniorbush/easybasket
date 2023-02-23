@@ -56,7 +56,6 @@ function FetchRecipes() {
         }
       }
     
-    
      
   return (
     <div>
