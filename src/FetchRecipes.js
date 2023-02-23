@@ -21,7 +21,7 @@ function FetchRecipes() {
     
     const [search, setSearch] = useState("");
 
-    const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired='true'&number=3`)
+    const [url, setUrl] = useState(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired='true'&number=8`)
     const { data } = useFetch(url)
    
     const [items, setItems] = useState();
@@ -52,7 +52,7 @@ function FetchRecipes() {
     const handleKeyPress = (e) => {
       const key = e.key;
         if(key === "Enter") {
-          setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=3`)
+          setUrl(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired="true"&query=${search}&number=8`)
         }
       }
     
